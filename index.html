@@ -117,12 +117,39 @@
                 </fieldset>
             </form>
         </section>
+
+        <!-- Seção 4: Multimídia (Demonstração) -->
+        <section>
+            <h2>Como funciona o comparador</h2>
+            <!-- Estratégia de preload="metadata": o vídeo está abaixo da dobra da página,
+                 por isso carregamos apenas os metadados (duração e dimensões) para poupar dados
+                 até o usuário decidir reproduzir o conteúdo. -->
+            <video id="video-demo" controls width="480" preload="metadata" poster="assets/images/streaming.jpg">
+                <!-- WebM primeiro pela maior eficiência de compressão na web -->
+                <source src="assets/media/demo-streaming.webm" type="video/webm">
+                <!-- MP4 em segundo como fallback de compatibilidade universal -->
+                <source src="assets/media/demo-streaming.mp4" type="video/mp4">
+                <track src="assets/media/legendas.vtt" kind="subtitles" srclang="pt-BR" label="Português" default>
+                O seu navegador não suporta a reprodução de vídeo HTML5.
+            </video>
+            <p><small id="status-formato"></small></p>
+        </section>
     </main>
 
     <footer>
         <p><a href="https://www.consumidor.gov.br" target="_blank" rel="noopener noreferrer">Conheça seus direitos no Consumidor.gov.br</a></p>
         <p>Projeto Integrador — Desenvolvimento Front-end para Web.</p>
     </footer>
+
+    <script>
+        const video = document.getElementById('video-demo');
+        const status = document.getElementById('status-formato');
+        if (video.canPlayType('video/webm') === 'probably' || video.canPlayType('video/webm') === 'maybe') {
+            status.textContent = 'Formato selecionado pelo navegador: WebM (alta eficiência).';
+        } else if (video.canPlayType('video/mp4')) {
+            status.textContent = 'Formato selecionado pelo navegador: MP4 (fallback compatível).';
+        }
+    </script>
 
 </body>
 </html>
