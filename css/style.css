@@ -1,0 +1,170 @@
+/* Variáveis CSS globais para manter consistência visual e facilitar manutenção */
+:root {
+    --cor-primaria: #1e1b4b;
+    --cor-destaque: #f59e0b;
+    --cor-fundo: #f8fafc;
+    --cor-texto: #1e293b;
+    --cor-borda: #cbd5e1;
+    --espacamento-padrao: 1.5rem;
+    --raio-borda: 8px;
+}
+
+/* Justificação de tipografia: todo font-size do projeto utiliza 'rem' em vez de 'px'
+   para respeitar as preferências de tamanho de fonte e acessibilidade configuradas pelo utilizador no navegador. */
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Seletor de ID para elemento único da página */
+#cabecalho-principal {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    padding: 2rem var(--espacamento-padrao);
+    text-align: center;
+    border-bottom: 4px solid var(--cor-destaque);
+}
+
+#cabecalho-principal h1 {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--espacamento-padrao);
+}
+
+h2 {
+    color: var(--cor-primaria);
+    font-size: 1.4rem;
+    margin-top: 0;
+}
+
+/* Classe reutilizável 1: .card (com Box Model explícito: padding, border e margin) */
+.card {
+    background-color: #ffffff;
+    padding: var(--espacamento-padrao);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    margin-bottom: var(--espacamento-padrao);
+}
+
+/* Classe reutilizável 2: .destaque */
+.destaque {
+    background-color: #fef3c7;
+    border-left: 4px solid var(--cor-destaque);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: var(--raio-borda);
+}
+
+/* Classe reutilizável 3: .botao */
+.botao {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.botao:hover {
+    background-color: #312e81;
+}
+
+/* Combinador de filho direto (>): escolhido para estilizar apenas os <li> diretamente
+   dentro da lista de dicas, sem afetar eventuais sublistas futuras. */
+.lista-dicas > li {
+    list-style-type: square;
+    margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
+}
+
+/* Estilização da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+th,
+td {
+    border: 1px solid var(--cor-borda);
+    padding: 0.75rem;
+    text-align: left;
+}
+
+thead {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+}
+
+/* Desafio Extra: object-fit: cover para evitar distorção da imagem */
+.capa-streaming {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: var(--raio-borda);
+    display: block;
+    margin-top: 1rem;
+}
+
+/* Formulário e Canvas sem estilos inline */
+fieldset {
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+form div {
+    margin-bottom: 0.75rem;
+}
+
+input,
+select {
+    font-size: 0.95rem;
+    padding: 0.4rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+}
+
+#grafico-precos {
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    max-width: 100%;
+}
+
+/* Rodapé e 4 estados de link na ordem correta (LoVe/HAte) */
+footer {
+    text-align: center;
+    padding: var(--espacamento-padrao);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--cor-borda);
+}
+
+a:link {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #6d28d9;
+}
+
+a:hover {
+    color: var(--cor-destaque);
+    text-decoration: none;
+}
+
+a:active {
+    color: #dc2626;
+}
