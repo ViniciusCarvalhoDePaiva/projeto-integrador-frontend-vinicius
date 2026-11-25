@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comparador de Planos de Streaming</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
+    <header id="cabecalho-principal">
         <!-- Observação de nitidez: ao redimensionar a janela do navegador ou aplicar zoom,
              este SVG inline mantém os contornos perfeitamente nítidos por ser baseado em vetores matemáticos. -->
         <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="titulo-svg">
@@ -23,9 +25,9 @@
 
     <main>
         <!-- Seção 1: Dicas -->
-        <section>
+        <section class="card">
             <h2>Dicas para economizar na assinatura</h2>
-            <ul>
+            <ul class="lista-dicas">
                 <li>Verifique se o plano escolhido possui anúncios antes de assinar.</li>
                 <li>Avalie quantas telas simultâneas sua família realmente precisa.</li>
                 <li>Considere alternar assinaturas mês a mês em vez de pagar todas juntas.</li>
@@ -33,9 +35,9 @@
         </section>
 
         <!-- Seção 2: Tabela Comparativa e Logo -->
-        <section>
+        <section class="card">
             <h2>Comparativo de Planos Básicos</h2>
-            <table border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>Serviço</th>
@@ -66,16 +68,16 @@
                 </tbody>
             </table>
 
-            <div>
+            <div class="destaque">
                 <p>Aviso: Valores meramente ilustrativos para fins educacionais. Consulte sempre o site oficial antes de contratar.</p>
-                <button type="button" aria-label="Fechar aviso de valores ilustrativos">✕</button>
+                <button type="button" class="botao" aria-label="Fechar aviso de valores ilustrativos">✕</button>
             </div>
 
-            <img src="assets/images/streaming.jpg" alt="Logo minimalista do Comparador de Planos de Streaming com ícone de TV, botão de play e estrelas mágicas" width="350">
+            <img class="capa-streaming" src="assets/images/streaming.jpg" alt="Logo minimalista do Comparador de Planos de Streaming com ícone de TV, botão de play e estrelas mágicas">
         </section>
 
         <!-- Seção 3: Formulário de Recomendação -->
-        <section>
+        <section class="card">
             <h2>Receba uma recomendação de plano</h2>
             <form action="#" method="post">
                 <fieldset>
@@ -121,17 +123,17 @@
                         <label for="anuncios-nao">Não, prefiro sem anúncios</label>
                     </fieldset>
 
-                    <button type="submit">Solicitar recomendação</button>
+                    <button type="submit" class="botao">Solicitar recomendação</button>
                 </fieldset>
             </form>
         </section>
 
         <!-- Seção 4: Multimídia (Demonstração) -->
-        <section>
+        <section class="card">
             <h2>Como funciona o comparador</h2>
             <!-- Estratégia de preload="metadata": o vídeo está abaixo da dobra da página,
                  por isso carregamos apenas os metadados (duração e dimensões) para poupar dados
-                 até o usuário decidir reproduzir o conteúdo. -->
+                 até o utilizador decidir reproduzir o conteúdo. -->
             <video id="video-demo" controls width="480" preload="metadata" poster="assets/images/streaming.jpg">
                 <source src="assets/media/demo-streaming.webm" type="video/webm">
                 <source src="assets/media/demo-streaming.mp4" type="video/mp4">
@@ -142,9 +144,9 @@
         </section>
 
         <!-- Seção 5: Gráfico Animado em Canvas -->
-        <section>
+        <section class="card">
             <h2>Comparativo Visual de Preços (Mensal)</h2>
-            <canvas id="grafico-precos" width="460" height="240" style="border: 1px solid #ccc;">
+            <canvas id="grafico-precos" width="460" height="240">
                 Gráfico de barras comparando os preços mensais de referência: Amazon Prime Video por R$ 19,90, Netflix Padrão com anúncios por R$ 20,90 e Disney+ Padrão por R$ 43,90.
             </canvas>
         </section>
@@ -178,7 +180,6 @@
         let progresso = 0;
 
         function desenharGrafico() {
-            // Limpa o frame anterior para evitar acúmulo visual
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             const baseLine = 200;
@@ -189,17 +190,14 @@
                 const alturaFinal = plano.preco * escala;
                 const alturaAtual = alturaFinal * progresso;
 
-                // Barra
                 ctx.fillStyle = plano.cor;
                 ctx.fillRect(x, baseLine - alturaAtual, 75, alturaAtual);
 
-                // Valor acima da barra
                 ctx.fillStyle = '#111';
                 ctx.font = 'bold 13px sans-serif';
                 ctx.textAlign = 'center';
                 ctx.fillText(`R$ ${plano.preco.toFixed(2).replace('.', ',')}`, x + 37, baseLine - alturaAtual - 8);
 
-                // Nome do serviço abaixo da barra
                 ctx.font = '13px sans-serif';
                 ctx.fillText(plano.nome, x + 37, baseLine + 20);
             });

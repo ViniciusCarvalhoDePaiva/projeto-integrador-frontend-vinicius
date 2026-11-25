@@ -1,0 +1,11 @@
+/* Reset base: garante que padding e border sejam incluídos no cálculo de largura/altura */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
