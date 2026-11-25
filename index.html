@@ -21,11 +21,42 @@
 
         <h1>Comparador de Planos de Streaming</h1>
         <p>Este site tem como objetivo ajudar consumidores a comparar preços, recursos e condições dos principais serviços de streaming disponíveis no Brasil de forma simples e transparente.</p>
+
+        <!-- Barra de navegação com Flexbox -->
+        <nav class="navbar" aria-label="Navegação principal">
+            <a href="#destaques">Destaques</a>
+            <a href="#dicas">Dicas</a>
+            <a href="#comparativo">Tabela</a>
+            <a href="#recomendacao">Recomendação</a>
+            <a href="#grafico">Gráfico</a>
+        </nav>
     </header>
 
     <main>
+        <!-- Nova Seção (Aula 07): Grelha Responsiva com CSS Grid -->
+        <section id="destaques" class="card">
+            <h2>Planos em Destaque</h2>
+            <div class="grade-planos">
+                <article class="plano-item">
+                    <h3>Amazon Prime Video</h3>
+                    <p class="plano-preco">R$ 19,90/mês</p>
+                    <p>Melhor custo-benefício: até 3 telas simultâneas e benefícios extras incluídos.</p>
+                </article>
+                <article class="plano-item">
+                    <h3>Netflix Padrão</h3>
+                    <p class="plano-preco">R$ 20,90/mês</p>
+                    <p>Catálogo amplo em Full HD para 2 telas simultâneas (com anúncios).</p>
+                </article>
+                <article class="plano-item">
+                    <h3>Disney+ Padrão</h3>
+                    <p class="plano-preco">R$ 43,90/mês</p>
+                    <p>Conteúdo Disney, Pixar, Marvel, Star Wars e ESPN sem anúncios.</p>
+                </article>
+            </div>
+        </section>
+
         <!-- Seção 1: Dicas -->
-        <section class="card">
+        <section id="dicas" class="card">
             <h2>Dicas para economizar na assinatura</h2>
             <ul class="lista-dicas">
                 <li>Verifique se o plano escolhido possui anúncios antes de assinar.</li>
@@ -35,7 +66,7 @@
         </section>
 
         <!-- Seção 2: Tabela Comparativa e Logo -->
-        <section class="card">
+        <section id="comparativo" class="card">
             <h2>Comparativo de Planos Básicos</h2>
             <table>
                 <thead>
@@ -77,7 +108,7 @@
         </section>
 
         <!-- Seção 3: Formulário de Recomendação -->
-        <section class="card">
+        <section id="recomendacao" class="card">
             <h2>Receba uma recomendação de plano</h2>
             <form action="#" method="post">
                 <fieldset>
@@ -144,7 +175,7 @@
         </section>
 
         <!-- Seção 5: Gráfico Animado em Canvas -->
-        <section class="card">
+        <section id="grafico" class="card">
             <h2>Comparativo Visual de Preços (Mensal)</h2>
             <canvas id="grafico-precos" width="460" height="240">
                 Gráfico de barras comparando os preços mensais de referência: Amazon Prime Video por R$ 19,90, Netflix Padrão com anúncios por R$ 20,90 e Disney+ Padrão por R$ 43,90.
