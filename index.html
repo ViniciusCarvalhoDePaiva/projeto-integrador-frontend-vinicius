@@ -8,6 +8,15 @@
 <body>
 
     <header>
+        <!-- Observação de nitidez: ao redimensionar a janela do navegador ou aplicar zoom,
+             este SVG inline mantém os contornos perfeitamente nítidos por ser baseado em vetores matemáticos. -->
+        <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="titulo-svg">
+            <title id="titulo-svg">Ícone vetorial do Comparador de Planos de Streaming</title>
+            <rect x="4" y="12" width="56" height="40" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="3"/>
+            <polygon points="27,22 27,42 43,32" fill="#f59e0b"/>
+            <line x1="22" y1="56" x2="42" y2="56" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+
         <h1>Comparador de Planos de Streaming</h1>
         <p>Este site tem como objetivo ajudar consumidores a comparar preços, recursos e condições dos principais serviços de streaming disponíveis no Brasil de forma simples e transparente.</p>
     </header>
@@ -59,7 +68,6 @@
 
             <div>
                 <p>Aviso: Valores meramente ilustrativos para fins educacionais. Consulte sempre o site oficial antes de contratar.</p>
-                <!-- Botão de ícone do Desafio Extra com aria-label -->
                 <button type="button" aria-label="Fechar aviso de valores ilustrativos">✕</button>
             </div>
 
@@ -125,14 +133,20 @@
                  por isso carregamos apenas os metadados (duração e dimensões) para poupar dados
                  até o usuário decidir reproduzir o conteúdo. -->
             <video id="video-demo" controls width="480" preload="metadata" poster="assets/images/streaming.jpg">
-                <!-- WebM primeiro pela maior eficiência de compressão na web -->
                 <source src="assets/media/demo-streaming.webm" type="video/webm">
-                <!-- MP4 em segundo como fallback de compatibilidade universal -->
                 <source src="assets/media/demo-streaming.mp4" type="video/mp4">
                 <track src="assets/media/legendas.vtt" kind="subtitles" srclang="pt-BR" label="Português" default>
                 O seu navegador não suporta a reprodução de vídeo HTML5.
             </video>
             <p><small id="status-formato"></small></p>
+        </section>
+
+        <!-- Seção 5: Gráfico Animado em Canvas -->
+        <section>
+            <h2>Comparativo Visual de Preços (Mensal)</h2>
+            <canvas id="grafico-precos" width="460" height="240" style="border: 1px solid #ccc;">
+                Gráfico de barras comparando os preços mensais de referência: Amazon Prime Video por R$ 19,90, Netflix Padrão com anúncios por R$ 20,90 e Disney+ Padrão por R$ 43,90.
+            </canvas>
         </section>
     </main>
 
@@ -142,6 +156,7 @@
     </footer>
 
     <script>
+        // Script Aula 04: verificação de formato de vídeo
         const video = document.getElementById('video-demo');
         const status = document.getElementById('status-formato');
         if (video.canPlayType('video/webm') === 'probably' || video.canPlayType('video/webm') === 'maybe') {
@@ -149,6 +164,53 @@
         } else if (video.canPlayType('video/mp4')) {
             status.textContent = 'Formato selecionado pelo navegador: MP4 (fallback compatível).';
         }
+
+        // Script Aula 05: gráfico de barras animado em Canvas 2D
+        const canvas = document.getElementById('grafico-precos');
+        const ctx = canvas.getContext('2d');
+
+        const planos = [
+            { nome: 'Prime Video', preco: 19.90, cor: '#00a8e1' },
+            { nome: 'Netflix', preco: 20.90, cor: '#e50914' },
+            { nome: 'Disney+', preco: 43.90, cor: '#113ccf' }
+        ];
+
+        let progresso = 0;
+
+        function desenharGrafico() {
+            // Limpa o frame anterior para evitar acúmulo visual
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const baseLine = 200;
+            const escala = 3.2;
+
+            planos.forEach((plano, index) => {
+                const x = 55 + index * 135;
+                const alturaFinal = plano.preco * escala;
+                const alturaAtual = alturaFinal * progresso;
+
+                // Barra
+                ctx.fillStyle = plano.cor;
+                ctx.fillRect(x, baseLine - alturaAtual, 75, alturaAtual);
+
+                // Valor acima da barra
+                ctx.fillStyle = '#111';
+                ctx.font = 'bold 13px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(`R$ ${plano.preco.toFixed(2).replace('.', ',')}`, x + 37, baseLine - alturaAtual - 8);
+
+                // Nome do serviço abaixo da barra
+                ctx.font = '13px sans-serif';
+                ctx.fillText(plano.nome, x + 37, baseLine + 20);
+            });
+
+            if (progresso < 1) {
+                progresso = Math.min(1, progresso + 0.03);
+                requestAnimationFrame(desenharGrafico);
+            }
+        }
+
+        requestAnimationFrame(desenharGrafico);
     </script>
 
 </body>
