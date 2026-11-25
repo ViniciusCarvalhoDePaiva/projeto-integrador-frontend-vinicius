@@ -167,4 +167,124 @@ a:hover {
 
 a:active {
     color: #dc2626;
+}/* =========================================
+   AULA 08: NAVBAR STICKY, DROPDOWN E HAMBÚRGUER
+   ========================================= */
+
+/* Barra de navegação fixa no topo durante a rolagem */
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--cor-primaria);
+    border-bottom: 3px solid var(--cor-destaque);
+    padding: 0.75rem var(--espacamento-padrao);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.menu-lista {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+}
+
+.menu-lista a:link,
+.menu-lista a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--raio-borda);
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu-lista a:hover,
+.menu-lista a:focus-visible {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+}
+
+/* Estado ativo para a secção atual */
+.menu-lista a.ativo {
+    background-color: rgba(245, 158, 11, 0.25);
+    border-bottom: 2px solid var(--cor-destaque);
+    color: var(--cor-destaque);
+}
+
+/* Dropdown funcional via :hover sem 'buracos' (top: 100% encostado ao pai) */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 190px;
+    background-color: var(--cor-primaria);
+    border: 1px solid var(--cor-destaque);
+    border-radius: var(--raio-borda);
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    border-radius: 0;
+    padding: 0.5rem 1rem;
+}
+
+/* Estrutura visual do botão hambúrguer (visível apenas em ecrãs estreitos) */
+.btn-hamburguer {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-hamburguer span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+@media (max-width: 720px) {
+    .menu-lista {
+        display: none;
+    }
+
+    .btn-hamburguer {
+        display: flex;
+    }
 }
