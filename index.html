@@ -7,58 +7,122 @@
 </head>
 <body>
 
-    <!-- Título principal do projeto -->
-    <h1>Comparador de Planos de Streaming</h1>
+    <header>
+        <h1>Comparador de Planos de Streaming</h1>
+        <p>Este site tem como objetivo ajudar consumidores a comparar preços, recursos e condições dos principais serviços de streaming disponíveis no Brasil de forma simples e transparente.</p>
+    </header>
 
-    <!-- Parágrafo descrevendo o objetivo -->
-    <p>Este site tem como objetivo ajudar consumidores a comparar preços, recursos e condições dos principais serviços de streaming disponíveis no Brasil de forma simples e transparente.</p>
+    <main>
+        <!-- Seção 1: Dicas -->
+        <section>
+            <h2>Dicas para economizar na assinatura</h2>
+            <ul>
+                <li>Verifique se o plano escolhido possui anúncios antes de assinar.</li>
+                <li>Avalie quantas telas simultâneas sua família realmente precisa.</li>
+                <li>Considere alternar assinaturas mês a mês em vez de pagar todas juntas.</li>
+            </ul>
+        </section>
 
-    <!-- Lista com 3 dicas relacionadas ao tema -->
-    <h2>Dicas para economizar na assinatura</h2>
-    <ul>
-        <li>Verifique se o plano escolhido possui anúncios antes de assinar.</li>
-        <li>Avalie quantas telas simultâneas sua família realmente precisa.</li>
-        <li>Considere alternar assinaturas mês a mês em vez de pagar todas juntas.</li>
-    </ul>
+        <!-- Seção 2: Tabela Comparativa e Logo -->
+        <section>
+            <h2>Comparativo de Planos Básicos</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Serviço</th>
+                        <th>Preço Mensal (Ref.)</th>
+                        <th>Telas Simultâneas</th>
+                        <th>Possui Anúncios?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Netflix (Padrão com anúncios)</td>
+                        <td>R$ 20,90</td>
+                        <td>2 telas</td>
+                        <td>Sim</td>
+                    </tr>
+                    <tr>
+                        <td>Amazon Prime Video</td>
+                        <td>R$ 19,90</td>
+                        <td>3 telas</td>
+                        <td>Não (padrão)</td>
+                    </tr>
+                    <tr>
+                        <td>Disney+ (Padrão)</td>
+                        <td>R$ 43,90</td>
+                        <td>2 telas</td>
+                        <td>Não</td>
+                    </tr>
+                </tbody>
+            </table>
 
-    <!-- Tabela comparativa com dados do tema -->
-    <h2>Comparativo de Planos Básicos</h2>
-    <table border="1">
-        <tr>
-            <th>Serviço</th>
-            <th>Preço Mensal (Ref.)</th>
-            <th>Telas Simultâneas</th>
-            <th>Possui Anúncios?</th>
-        </tr>
-        <tr>
-            <td>Netflix (Padrão com anúncios)</td>
-            <td>R$ 20,90</td>
-            <td>2 telas</td>
-            <td>Sim</td>
-        </tr>
-        <tr>
-            <td>Amazon Prime Video</td>
-            <td>R$ 19,90</td>
-            <td>3 telas</td>
-            <td>Não (padrão)</td>
-        </tr>
-        <tr>
-            <td>Disney+ (Padrão)</td>
-            <td>R$ 43,90</td>
-            <td>2 telas</td>
-            <td>Não</td>
-        </tr>
-    </table>
+            <div>
+                <p>Aviso: Valores meramente ilustrativos para fins educacionais. Consulte sempre o site oficial antes de contratar.</p>
+                <!-- Botão de ícone do Desafio Extra com aria-label -->
+                <button type="button" aria-label="Fechar aviso de valores ilustrativos">✕</button>
+            </div>
 
-    <p><small>Aviso: Valores meramente ilustrativos para fins educacionais. Consulte sempre o site oficial antes de contratar.</small></p>
+            <img src="assets/images/streaming.jpg" alt="Logo minimalista do Comparador de Planos de Streaming com ícone de TV, botão de play e estrelas mágicas" width="350">
+        </section>
 
-    <!-- Imagem referenciada por caminho relativo -->
-    <img src="assets/images/streaming.jpg" alt="Sala de estar com televisão exibindo tela de filmes e séries" width="350">
+        <!-- Seção 3: Formulário de Recomendação -->
+        <section>
+            <h2>Receba uma recomendação de plano</h2>
+            <form action="#" method="post">
+                <fieldset>
+                    <legend>Seus dados e preferências de streaming</legend>
 
-    <br><br>
+                    <div>
+                        <label for="nome">Nome completo:</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
 
-    <!-- Link externo relevante -->
-    <a href="https://www.consumidor.gov.br" target="_blank" rel="noopener noreferrer">Conheça seus direitos no Consumidor.gov.br</a>
+                    <div>
+                        <label for="email">E-mail para receber alertas:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div>
+                        <label for="orcamento">Orçamento mensal máximo (R$):</label>
+                        <input type="number" id="orcamento" name="orcamento" min="15" max="200" step="5" required>
+                    </div>
+
+                    <div>
+                        <label for="telas">Quantidade de telas simultâneas:</label>
+                        <input type="number" id="telas" name="telas" min="1" max="6" value="2">
+                    </div>
+
+                    <div>
+                        <label for="servico-atual">Serviço principal que utiliza hoje:</label>
+                        <select id="servico-atual" name="servico-atual">
+                            <option value="netflix">Netflix</option>
+                            <option value="prime">Amazon Prime Video</option>
+                            <option value="disney">Disney+</option>
+                            <option value="max">Max</option>
+                            <option value="nenhum">Nenhum no momento</option>
+                        </select>
+                    </div>
+
+                    <fieldset>
+                        <legend>Aceita planos com anúncios?</legend>
+                        <input type="radio" id="anuncios-sim" name="aceita-anuncios" value="sim" required>
+                        <label for="anuncios-sim">Sim, para pagar mais barato</label>
+
+                        <input type="radio" id="anuncios-nao" name="aceita-anuncios" value="nao">
+                        <label for="anuncios-nao">Não, prefiro sem anúncios</label>
+                    </fieldset>
+
+                    <button type="submit">Solicitar recomendação</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p><a href="https://www.consumidor.gov.br" target="_blank" rel="noopener noreferrer">Conheça seus direitos no Consumidor.gov.br</a></p>
+        <p>Projeto Integrador — Desenvolvimento Front-end para Web.</p>
+    </footer>
 
 </body>
 </html>
