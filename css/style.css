@@ -168,72 +168,123 @@ a:hover {
 a:active {
     color: #dc2626;
 }/* =========================================
-   AULA 07: FLEXBOX, CSS GRID E PSEUDO-CLASSES
+   AULA 08: NAVBAR STICKY, DROPDOWN E HAMBÚRGUER
    ========================================= */
 
-/* Barra de navegação com Flexbox */
-.navbar {
+/* Barra de navegação fixa no topo durante a rolagem */
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--cor-primaria);
+    border-bottom: 3px solid var(--cor-destaque);
+    padding: 0.75rem var(--espacamento-padrao);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    gap: 1rem;
 }
 
-.navbar a:link,
-.navbar a:visited {
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+.menu-lista {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+}
+
+.menu-lista a:link,
+.menu-lista a:visited {
     color: #ffffff;
     text-decoration: none;
     font-weight: 600;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 0.75rem;
     border-radius: var(--raio-borda);
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.navbar a:hover,
-.navbar a:focus-visible {
+.menu-lista a:hover,
+.menu-lista a:focus-visible {
     background-color: var(--cor-destaque);
     color: var(--cor-primaria);
-    outline: 2px solid #ffffff;
-    outline-offset: 2px;
 }
 
-/* Grelha responsiva de planos com CSS Grid (sem media queries) */
-.grade-planos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.25rem;
-    margin-top: 1rem;
+/* Estado ativo para a secção atual */
+.menu-lista a.ativo {
+    background-color: rgba(245, 158, 11, 0.25);
+    border-bottom: 2px solid var(--cor-destaque);
+    color: var(--cor-destaque);
 }
 
-.plano-item {
-    background-color: var(--cor-fundo);
-    border: 1px solid var(--cor-borda);
+/* Dropdown funcional via :hover sem 'buracos' (top: 100% encostado ao pai) */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 190px;
+    background-color: var(--cor-primaria);
+    border: 1px solid var(--cor-destaque);
     border-radius: var(--raio-borda);
-    padding: 1.25rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-/* Preferência por transform em vez de width/height:
-   animar transform é processado na GPU (camada de composição) e evita recalcular o layout (reflow),
-   mantendo a animação fluida sem empurrar os outros elementos da grelha. */
-.plano-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 14px rgba(30, 27, 75, 0.12);
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
 }
 
-/* Pseudo-classe estrutural (:first-child): destaca o primeiro plano da grelha como melhor custo-benefício */
-.plano-item:first-child {
-    border: 2px solid var(--cor-destaque);
-    background-color: #fef3c7;
+.dropdown-menu a {
+    border-radius: 0;
+    padding: 0.5rem 1rem;
 }
 
-.plano-preco {
-    font-size: 1.35rem;
-    font-weight: bold;
-    color: var(--cor-primaria);
-    margin: 0.5rem 0;
+/* Estrutura visual do botão hambúrguer (visível apenas em ecrãs estreitos) */
+.btn-hamburguer {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-hamburguer span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+@media (max-width: 720px) {
+    .menu-lista {
+        display: none;
+    }
+
+    .btn-hamburguer {
+        display: flex;
+    }
 }

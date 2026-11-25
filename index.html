@@ -9,16 +9,46 @@
 </head>
 <body>
 
-    <header id="cabecalho-principal">
-        <!-- Observação de nitidez: ao redimensionar a janela do navegador ou aplicar zoom,
-             este SVG inline mantém os contornos perfeitamente nítidos por ser baseado em vetores matemáticos. -->
-        <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="titulo-svg">
-            <title id="titulo-svg">Ícone vetorial do Comparador de Planos de Streaming</title>
-            <rect x="4" y="12" width="56" height="40" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="3"/>
-            <polygon points="27,22 27,42 43,32" fill="#f59e0b"/>
-            <line x1="22" y1="56" x2="42" y2="56" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
-        </svg>
+    <!-- Diagnóstico de contexto de empilhamento (DevTools):
+         A navbar usa position: sticky com z-index: 100, criando um contexto de empilhamento próprio
+         acima dos cartões (.plano-item:hover com transform, que também gera contexto de empilhamento).
+         Isto garante que o dropdown nunca fique atrás dos cartões da grelha durante a rolagem. -->
+    <nav class="navbar-sticky" aria-label="Navegação principal">
+        <a href="#cabecalho-principal" class="navbar-logo">
+            <!-- Observação de nitidez: ao redimensionar a janela do navegador ou aplicar zoom,
+                 este SVG inline mantém os contornos perfeitamente nítidos por ser baseado em vetores matemáticos. -->
+            <svg width="40" height="40" viewBox="0 0 64 64" role="img" aria-labelledby="titulo-svg">
+                <title id="titulo-svg">Ícone vetorial do Comparador de Planos de Streaming</title>
+                <rect x="4" y="12" width="56" height="40" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="3"/>
+                <polygon points="27,22 27,42 43,32" fill="#f59e0b"/>
+                <line x1="22" y1="56" x2="42" y2="56" stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <span>StreamCompare</span>
+        </a>
 
+        <ul class="menu-lista">
+            <li><a href="#destaques" class="ativo" aria-current="page">Destaques</a></li>
+            <li class="dropdown">
+                <a href="#comparativo" aria-haspopup="true">Planos ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#comparativo">Tabela Comparativa</a></li>
+                    <li><a href="#grafico">Gráfico de Preços</a></li>
+                    <li><a href="#recomendacao">Recomendação</a></li>
+                </ul>
+            </li>
+            <li><a href="#dicas">Dicas</a></li>
+            <li><a href="#demonstracao">Demonstração</a></li>
+        </ul>
+
+        <!-- Estrutura visual do botão hambúrguer para ecrãs estreitos (sem JS nesta aula) -->
+        <button type="button" class="btn-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <header id="cabecalho-principal">
         <h1>Comparador de Planos de Streaming</h1>
         <p>Este site tem como objetivo ajudar consumidores a comparar preços, recursos e condições dos principais serviços de streaming disponíveis no Brasil de forma simples e transparente.</p>
 
@@ -33,7 +63,7 @@
     </header>
 
     <main>
-        <!-- Nova Seção (Aula 07): Grelha Responsiva com CSS Grid -->
+        <!-- Seção (Aula 07): Grelha Responsiva com CSS Grid -->
         <section id="destaques" class="card">
             <h2>Planos em Destaque</h2>
             <div class="grade-planos">
@@ -160,7 +190,7 @@
         </section>
 
         <!-- Seção 4: Multimídia (Demonstração) -->
-        <section class="card">
+        <section id="demonstracao" class="card">
             <h2>Como funciona o comparador</h2>
             <!-- Estratégia de preload="metadata": o vídeo está abaixo da dobra da página,
                  por isso carregamos apenas os metadados (duração e dimensões) para poupar dados
