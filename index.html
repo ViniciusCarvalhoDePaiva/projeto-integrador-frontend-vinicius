@@ -33,6 +33,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#comparativo">Tabela Comparativa</a></li>
                     <li><a href="#grafico">Gráfico de Preços</a></li>
+                    <li><a href="#resultado">Análise por Tela</a></li>
                     <li><a href="#recomendacao">Recomendação</a></li>
                 </ul>
             </li>
@@ -40,7 +41,7 @@
             <li><a href="#demonstracao">Demonstração</a></li>
         </ul>
 
-        <!-- Estrutura visual do botão hambúrguer para ecrãs estreitos (sem JS nesta aula) -->
+        <!-- Estrutura visual do botão hambúrguer para telas estreitas (sem JS nesta aula) -->
         <button type="button" class="btn-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false">
             <span></span>
             <span></span>
@@ -51,19 +52,10 @@
     <header id="cabecalho-principal">
         <h1>Comparador de Planos de Streaming</h1>
         <p>Este site tem como objetivo ajudar consumidores a comparar preços, recursos e condições dos principais serviços de streaming disponíveis no Brasil de forma simples e transparente.</p>
-
-        <!-- Barra de navegação com Flexbox -->
-        <nav class="navbar" aria-label="Navegação principal">
-            <a href="#destaques">Destaques</a>
-            <a href="#dicas">Dicas</a>
-            <a href="#comparativo">Tabela</a>
-            <a href="#recomendacao">Recomendação</a>
-            <a href="#grafico">Gráfico</a>
-        </nav>
     </header>
 
     <main>
-        <!-- Seção (Aula 07): Grelha Responsiva com CSS Grid -->
+        <!-- Seção (Aula 07): Grade Responsiva com CSS Grid -->
         <section id="destaques" class="card">
             <h2>Planos em Destaque</h2>
             <div class="grade-planos">
@@ -194,7 +186,7 @@
             <h2>Como funciona o comparador</h2>
             <!-- Estratégia de preload="metadata": o vídeo está abaixo da dobra da página,
                  por isso carregamos apenas os metadados (duração e dimensões) para poupar dados
-                 até o utilizador decidir reproduzir o conteúdo. -->
+                 até o usuário decidir reproduzir o conteúdo. -->
             <video id="video-demo" controls width="480" preload="metadata" poster="assets/images/streaming.jpg">
                 <source src="assets/media/demo-streaming.webm" type="video/webm">
                 <source src="assets/media/demo-streaming.mp4" type="video/mp4">
@@ -210,6 +202,11 @@
             <canvas id="grafico-precos" width="460" height="240">
                 Gráfico de barras comparando os preços mensais de referência: Amazon Prime Video por R$ 19,90, Netflix Padrão com anúncios por R$ 20,90 e Disney+ Padrão por R$ 43,90.
             </canvas>
+        </section>
+
+        <!-- Seção 6 (Aula 11): Análise de Custo por Tela via DOM -->
+        <section id="resultado" class="card">
+            <h2>Análise de Custo por Tela (JavaScript + DOM)</h2>
         </section>
     </main>
 
@@ -271,6 +268,8 @@
 
         requestAnimationFrame(desenharGrafico);
     </script>
-<script src="js/logica.js" defer></script>
+
+    <script src="js/logica.js" defer></script>
+    <script src="js/script.js" defer></script>
 </body>
 </html>
