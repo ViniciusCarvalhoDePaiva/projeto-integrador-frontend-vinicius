@@ -12,7 +12,7 @@
     <!-- Diagnóstico de contexto de empilhamento (DevTools):
          A navbar usa position: sticky com z-index: 100, criando um contexto de empilhamento próprio
          acima dos cartões (.plano-item:hover com transform, que também gera contexto de empilhamento).
-         Isto garante que o dropdown nunca fique atrás dos cartões da grelha durante a rolagem. -->
+         Isto garante que o dropdown nunca fique atrás dos cartões da grade durante a rolagem. -->
     <nav class="navbar-sticky" aria-label="Navegação principal">
         <a href="#cabecalho-principal" class="navbar-logo">
             <!-- Observação de nitidez: ao redimensionar a janela do navegador ou aplicar zoom,
@@ -33,7 +33,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="#comparativo">Tabela Comparativa</a></li>
                     <li><a href="#grafico">Gráfico de Preços</a></li>
-                    <li><a href="#resultado">Análise por Tela</a></li>
+                    <li><a href="#resultado">Análise Interativa</a></li>
                     <li><a href="#recomendacao">Recomendação</a></li>
                 </ul>
             </li>
@@ -41,7 +41,7 @@
             <li><a href="#demonstracao">Demonstração</a></li>
         </ul>
 
-        <!-- Estrutura visual do botão hambúrguer para telas estreitas (sem JS nesta aula) -->
+        <!-- Estrutura visual do botão hambúrguer para telas estreitas -->
         <button type="button" class="btn-hamburguer" aria-label="Abrir menu de navegação" aria-expanded="false">
             <span></span>
             <span></span>
@@ -204,9 +204,39 @@
             </canvas>
         </section>
 
-        <!-- Seção 6 (Aula 11): Análise de Custo por Tela via DOM -->
+        <!-- Seção 6 (Aulas 11 e 12): Análise Interativa de Planos (DOM + Eventos) -->
         <section id="resultado" class="card">
-            <h2>Análise de Custo por Tela (JavaScript + DOM)</h2>
+            <h2>Análise Interativa de Planos (JavaScript + DOM)</h2>
+
+            <div class="barra-controles">
+                <label for="busca-planos">Filtrar planos:</label>
+                <input type="search" id="busca-planos" placeholder="Digite o nome do serviço (ex: Netflix)...">
+
+                <button type="button" id="btn-toggle-novo-plano" class="botao" aria-expanded="false" aria-controls="painel-novo-plano">
+                    + Adicionar novo plano
+                </button>
+            </div>
+
+            <div id="painel-novo-plano" class="painel-novo-plano" hidden>
+                <form id="form-novo-plano">
+                    <div>
+                        <label for="novo-plano-nome">Nome do plano:</label>
+                        <input type="text" id="novo-plano-nome" required>
+                    </div>
+                    <div>
+                        <label for="novo-plano-preco">Preço mensal (R$):</label>
+                        <input type="number" id="novo-plano-preco" min="1" step="0.10" required>
+                    </div>
+                    <div>
+                        <label for="novo-plano-telas">Telas simultâneas:</label>
+                        <input type="number" id="novo-plano-telas" min="1" max="10" value="2" required>
+                    </div>
+                    <button type="submit" class="botao">Salvar plano na lista</button>
+                </form>
+            </div>
+
+            <p id="resumo-interativo" class="resumo-analise" aria-live="polite"></p>
+            <ul id="lista-planos" class="grade-resultados lista-interativa"></ul>
         </section>
     </main>
 
@@ -269,7 +299,7 @@
         requestAnimationFrame(desenharGrafico);
     </script>
 
-    <script src="js/logica.js" defer></script>
+    <!-- <script src="js/logica.js" defer></script> -->
     <script src="js/script.js" defer></script>
 </body>
 </html>
