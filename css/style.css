@@ -357,4 +357,65 @@ a:active {
     color: #ffffff;
     border-radius: var(--raio-borda);
     font-weight: 600;
+}/* =========================================
+   AULA 12: CONTROLOS INTERATIVOS E EVENTOS
+   ========================================= */
+
+.barra-controles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.barra-controles input[type="search"] {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.55rem 0.75rem;
+}
+
+.painel-novo-plano {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.lista-interativa {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.item-favorito {
+    outline: 2px solid var(--cor-destaque);
+}
+
+.acoes-item {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.btn-acao {
+    background-color: var(--cor-primaria);
+    color: #ffffff;
+    border: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-acao:focus-visible,
+#btn-toggle-novo-plano:focus-visible {
+    outline: 3px solid var(--cor-destaque);
+    outline-offset: 2px;
+}
+
+.btn-remover {
+    background-color: #dc2626;
 }
